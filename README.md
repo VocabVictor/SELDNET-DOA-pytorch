@@ -1,5 +1,7 @@
 # SELDNET-DOA-pytorch
 
+![PyTorch Version](https://img.shields.io/badge/PyTorch-1.x-red) ![Python Version](https://img.shields.io/badge/Python-3.7+-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Windows](https://img.shields.io/badge/OS-Windows-blue) ![macOS](https://img.shields.io/badge/OS-macOS-lightgrey) ![Linux](https://img.shields.io/badge/OS-Linux-green)
+
 ## 目录
 
 1. [项目简介](#项目简介)
