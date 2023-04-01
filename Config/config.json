@@ -1,0 +1,64 @@
+{
+    "name": "Mnist_LeNet",
+    "n_gpu": 1,
+    "log_dir":"./Log",
+    "log_config":"./Vsualization/logger_config.json",
+    "arch": {
+        "type": "MnistModel",
+        "args": {}
+    },
+    "train_loader": {
+        "type": "MnistDataLoader",
+        "args":{
+            "data_dir": "./Data/Nomalized",
+            "batch_size": 16,
+            "shuffle": true,
+            "drop_last": false,
+            "num_workers": 2
+        }
+    },
+    "test_loader": {
+        "type": "MnistDataLoader",
+        "args":{
+            "data_dir": "./Data/Nomalized_test",
+            "batch_size":16,
+            "shuffle": true,
+            "drop_last": false,
+            "num_workers": 2
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args":{
+            "lr": 0.001,
+            "weight_decay": 0,
+            "amsgrad": true
+        }
+    },
+    "loss": "nll_loss",
+    "metrics": [
+        "accuracy", "top_k_acc"
+    ],
+    "resume":"./saved",
+    "suffix": "model_best.pth",
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 50,
+            "gamma": 0.1
+        }
+    },
+    "trainer": {
+        "epochs": 500,
+        "device": "cuda",
+        "input_dim": 4,
+        "start_epoch": 1,
+        "save_dir": "./saved",
+        "save_period": 1,
+        "verbosity": 2,
+        "batch_size":16,
+        "monitor": "min val_loss",
+        "early_stop": 10,
+        "tensorboard": true
+    }
+}
