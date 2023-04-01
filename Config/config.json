@@ -4,8 +4,8 @@
     "log_dir":"./Log",
     "log_config":"./Vsualization/logger_config.json",
     "arch": {
-        "type": "MnistModel",
-        "args": {}
+      "type": "SELDnet",
+      "args": {}
     },
     "train_loader": {
         "type": "MnistDataLoader",

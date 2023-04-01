@@ -1,40 +1,35 @@
 import importlib
 from datetime import datetime
-from torchvision.utils import make_grid
 
 from Vsualization import Logger
 
 
 class TensorBoard:
-    def __new__(cls, *args, **kw):
-        if not hasattr(cls, '_instance'):
-            cls._instance = super().__new__(cls)
-        return cls._instance
 
-    def __init__(self, log_dir="../Log", logger=None, enabled=True):
+    def __init__(self, log_dir="../Log", logger=None):
         self.writer = None
         self.selected_module = ""
         self.__step = 0
-        if enabled:
-            if logger is None:
-                logger = Logger(log_dir)
 
-            for module in ["torch.utils.tensorboard", "tensorboardX"]:
-                try:
-                    self.writer = importlib.import_module(module).SummaryWriter(log_dir)
-                    succeeded = True
-                    self.selected_module = module
-                    break
-                except ImportError:
-                    succeeded = False
+        if logger is None:
+            logger = Logger(log_dir)
 
-            if not succeeded:
-                message = "Warning: visualization (Tensorboard) is configured to use, but currently not installed on " \
-                          "this machine. Please install TensorboardX with 'pip install tensorboardx', upgrade PyTorch " \
-                          "to " \
-                          "version >= 1.1 to use 'torch.Utils.tensorboard' or turn off the option in the " \
-                          "'config.json' file. "
-                logger.warning(message)
+        for module in ["torch.utils.tensorboard", "tensorboardX"]:
+            try:
+                self.writer = importlib.import_module(module).SummaryWriter(log_dir)
+                succeeded = True
+                self.selected_module = module
+                break
+            except ImportError:
+                succeeded = False
+
+        if not succeeded:
+            message = "Warning: visualization (Tensorboard) is configured to use, but currently not installed on " \
+                      "this machine. Please install TensorboardX with 'pip install tensorboardx', upgrade PyTorch " \
+                      "to " \
+                      "version >= 1.1 to use 'torch.Utils.tensorboard' or turn off the option in the " \
+                      "'config.json' file. "
+            logger.warning(message)
 
         self.tb_writer_ftns = {
             'add_scalar', 'add_scalars', 'add_audio',

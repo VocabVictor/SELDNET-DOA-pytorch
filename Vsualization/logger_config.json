@@ -1,42 +1,37 @@
 
 {
-    "version": 1, 
-    "disable_existing_loggers": false, 
-    "formatters": {
-        "simple": {"format": "%(message)s"}, 
-        "datetime": {"format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"}
-    }, 
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-            "level": "INFO",
-            "formatter": "simple"
-        },
-        "info_file_handler": {
-            "class": "logging.handlers.RotatingFileHandler",
-            "level": "INFO",
-            "formatter": "datetime",
-            "filename": "info.log",
-            "maxBytes": 10485760,
-            "backupCount": 20,
-            "encoding": "utf8"
-        },
-        "metric_handler": {
-            "class": "logging.handlers.RotatingFileHandler",
-            "level": "INFO",
-            "formatter": "simple",
-            "filename": "metric.txt",
-            "maxBytes": 10485760,
-            "backupCount": 20,
-            "encoding": "utf8"
-        }
-    }, 
-    "root": {
-        "level": "INFO", 
-        "handlers": [
-            "console",
-            "info_file_handler",
-            "metric_handler"
-        ]
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
+    "simple": {
+      "format": "%(message)s"
+    },
+    "datetime": {
+      "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     }
+  },
+  "handlers": {
+    "console": {
+      "class": "logging.StreamHandler",
+      "level": "INFO",
+      "formatter": "simple"
+    },
+    "info_file_handler": {
+      "class": "logging.handlers.RotatingFileHandler",
+      "level": "INFO",
+      "formatter": "datetime",
+      "filename": "info.log",
+      "maxBytes": 10485760,
+      "backupCount": 20,
+      "encoding": "utf8"
+    }
+  },
+  "root": {
+    "level": "INFO",
+    "handlers": [
+      "console",
+      "info_file_handler",
+      "metric_handler"
+    ]
+  }
 }

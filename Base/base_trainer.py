@@ -1,8 +1,8 @@
+from abc import abstractmethod
 from glob import glob
 from os.path import join
 
 import torch
-from abc import abstractmethod
 from numpy import inf
 from torch import optim
 
@@ -54,7 +54,7 @@ class BaseTrainer:
 
         self.checkpoint_dir = cfg_trainer.save_dir
 
-        # setup visualization writer instance                
+        # setup visualization writer instance
         self.writer = TensorBoard(config.log_dir, self.logger, cfg_trainer.tensorboard)
 
         if config.resume is not None:
